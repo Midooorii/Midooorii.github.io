@@ -1,0 +1,444 @@
+/* Global styles */
+
+html, body {
+    height: 100%; /* Assurer que body et html prennent toute la hauteur de la fenêtre */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Disposer les éléments enfants (sections et footer) en colonne */
+}
+
+/* Header styles */
+header {
+    background: #083B;
+    color: #fff;
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px #083b1c;
+    font-family:"Mali", serif;
+
+}
+
+header .logo {
+    font-size: 25px;
+    font-weight: bold;
+    font-family:"Mali", serif;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 0.5rem 1rem; /* Ajout d'espace autour des liens */
+    border-radius: 5px; /* Arrondi des coins pour un effet moderne */
+    transition: all 0.3s ease-in-out; /* Transition fluide pour tous les changements */
+}
+
+header nav a:hover {
+    color: #083b1c;
+    background-color: white;/* Fond clair pour l'effet hover */
+}
+
+header nav .active {
+    color: #083b1c;
+    background-color: white; /* Couleur de fond plus visible */
+    font-weight: bold; /* Mettre le texte en gras pour accentuer l'état actif */
+    border: 2px solid #083b1c; /* Une bordure pour mieux démarquer l'élément actif */
+}
+
+
+/* Hero section */
+.hero {
+    background: linear-gradient(to right, #083B, #083B32);
+    color: #fff;
+    text-align: center;
+    padding: 4rem 2rem;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+}
+
+.profile-img {
+    width: 150px; /* Ajustez la taille de l'image */
+    height: 150px;
+    border-radius: 50%; /* Pour rendre l'image circulaire */
+    object-fit: cover;
+    border: 4px solid #fff; /* Bordure blanche autour de l'image */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre légère autour de l'image */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family:"Mali", serif;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero button {
+    padding: 0.8rem 2rem;
+    border: none;
+    background: #083b1c;
+    color: #083B32;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.hero button:hover {
+    background: #083b1c;
+}
+
+/* Sections styles */
+.sections {
+    flex: 1; /* Cette section prend tout l'espace restant pour pousser le footer vers le bas */
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sections h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem; /* Augmenter l'espacement pour un meilleur visuel */
+    color: #083B;
+}
+
+/* Cards styles */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: left; /* Texte aligné à gauche pour plus de lisibilité */
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 400px; /* Limite la largeur des cartes */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #083B;
+}
+
+.card p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.cards #photo {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Bord arrondi pour les images */
+    max-width: 400px; /* Limite la largeur des images */
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #083b1c;
+    color: #fff;
+    margin-top: 2rem;
+    border-radius: 20px 20px 0 0;
+}
+
+/* Footer link styles */
+footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero {
+        padding: 2rem;
+    }
+
+    .cards {
+        flex-direction: column; /* En mode mobile, les éléments s'affichent en colonne */
+        align-items: center; /* Centrer les éléments */
+    }
+
+    .card {
+        padding: 1rem; /* Réduire les marges pour les petits écrans */
+    }
+}
+
+/* Custom button styles */
+.my-button {
+    background-color: #083B; /* Couleur de fond du bouton */
+    color: white;              /* Couleur du texte */
+    border: none;              /* Retirer la bordure du bouton */
+    padding: 0.8rem 2rem;      /* Espacement interne (haut/bas, gauche/droite) */
+    font-size: 1.2rem;         /* Taille du texte */
+    border-radius: 30px;       /* Coins arrondis */
+    cursor: pointer;          /* Changer le curseur en pointeur lorsqu'on survole le bouton */
+    transition: background-color 0.3s; /* Effet au survol */
+    margin-bottom: 1rem;
+}
+
+.my-button:hover {
+    background-color: #083b1c; /* Couleur de fond au survol */
+}
+
+i {
+    color: #083B; /* Couleur des icônes */
+    font-size: 2rem; /* Ajustez la taille des icônes (rem ou px selon vos besoins) */
+    margin: 0.5rem; /* Ajoutez de l'espacement autour si nécessaire */
+    transition: transform 0.3s ease; /* Animation pour un effet visuel sympa */
+}
+
+i:hover {
+    transform: scale(1.2); /* Agrandit légèrement l'icône au survol */
+}
+
+#experience{
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        text-align: left; /* Texte aligné à gauche pour plus de lisibilité */
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: 100%;
+        max-width: 700px; /* Limite la largeur des cartes pour un meilleur rendu */
+}
+
+/* ===== SECTION competence ===== */
+#competence {
+    padding: 2rem;
+    background: #fff;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #competence h1,
+  #competence h2 {
+    color: #083B;
+    text-align: center;
+  }
+  
+  #competence h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family:"Mali", serif;
+  }
+  
+  #competence h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  #competence p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: justify;
+  }
+  
+  #competence video {
+    display: block;
+    max-width: 100%;
+    margin: 1.5rem auto;
+    border: 3px solid #083B;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ===== CAROUSEL ===== */
+  .carousel {
+    position: relative;
+    margin: 2rem 0;
+  }
+  
+  .carousel .slides {
+    display: flex;
+    overflow: hidden; /* Empêche le débordement horizontal */
+    position: relative;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto; /* Ajuste la hauteur au contenu */
+  }
+  
+  .carousel .slide {
+    flex-shrink: 0;
+    min-width: 100%; /* Empêche les slides de dépasser */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    transition: opacity 0.5s ease-in-out;
+    box-sizing: border-box; /* Inclut le padding dans la largeur */
+  }
+  
+  .carousel .slide.active {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .carousel .slide .caption h2 {
+    font-size: 1.3rem;
+    color: #083B;
+    margin-bottom: 1rem;
+  }
+  
+  .carousel .rowCarousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .carousel button {
+    background: #083B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  .carousel button:hover {
+    background: #083B;
+  }
+  
+  .carousel .prev,
+  .carousel .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #083B;
+    color: white;
+    border: none;
+    width: 40px; /* Cercle parfait */
+    height: 40px; /* Cercle parfait */
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .carousel .prev {
+    left: 10px; /* Ajuste la position gauche */
+  }
+  
+  .carousel .next {
+    right: 10px; /* Ajuste la position droite */
+  }
+  
+  
+  .carousel .prev:hover,
+  .carousel .next:hover {
+    background: #0A4C; /* Couleur légèrement plus claire pour l'effet hover */
+    transform: translateY(-50%) scale(1.1); /* Agrandissement lors du hover */
+  }
+  
+  
+  /* ===== BOUTONS ===== */
+  .carousel .rowCarousel button {
+    background-color: #083B;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .carousel .rowCarousel button:hover {
+    background-color: #083B;
+    transform: scale(1.05);
+  }
+  
+  /* ===== ANIMATIONS ===== */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .carousel .slide.active {
+    animation: fade-in 0.5s ease-in-out;
+  }
+  
+  #competence img {
+    display: block;
+    max-width: 100%;
+    margin: 1.5rem auto;
+    border: 3px solid #083B;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    font-family:"Mali", serif;
+  }
+
+#carousel{
+  width: 650px; /* Assurez-vous que les images ne dépassent pas la largeur de l'écran sur les petits appareils */
+  height: 400px;
+}
+  
+#contact{
+  flex-wrap: nowrap;
+  width: 100%; 
+  max-width: 800px;
+}

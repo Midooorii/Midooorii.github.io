@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jun 13 14:16:37 2023
+
+@author: jlebeau
+"""
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.linear_model import LinearRegression
+
+vue_DF = pd.read_csv("sae.csv")                              # Importation de la vue en fichier CSV et stockage dans un DataFrame
+
+vue_A = vue_DF.to_numpy()                                   # Convertion du DataFrame en une matrice numpy
+
+
+def CentreReduire(a):
+    '''
+    Parameters
+    ----------
+    a : matrice des variables 
+
+    Returns
+    -------
+    res : matrice avec les valeurs centrée et réduite
+    '''
+    a = np.array(a, dtype=np.float64)
+    res = np.empty(a.shape[0])
+    moy = a.mean(axis=0)
+    e_t = a.std(axis=0)
+    res = a - moy
+    res = res / e_t
+    return res
+
+vue_CR = CentreReduire(vue_A[:, 1:])                    # Centrer et réduire les valeurs de nos variables
+
+
+matriceCov = np.cov(vue_CR, rowvar=False)               # Calcul de la matrice de covariance 
+print("Matrice de Covariance :\n",matriceCov)
+
+
+
+Y = vue_CR[:, 0]                                        # Sélection de la variable endogène
+X = vue_CR[:, 1:]                             # Sélection des variables explicatives
+
+linear_regression = LinearRegression()                  # Création d'un objet de régression linéaire
+
+linear_regression.fit(X, Y)                             # Création du modèle de regression linéaire de X et Y
+
+a = linear_regression.coef_                             # Obtention des paramètres
+
+Cor = linear_regression.score(X, Y)                     # Calcul du coefficient de corrélation multiple
+
+print("Paramètres a :\n",a)
+print("Coefficient de corrélation :\n",Cor)

@@ -1,0 +1,407 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+
+// les constantes
+#define NB_LIGNES 6
+#define NB_COLONNES 7
+#define PION_A 'X'
+#define PION_B 'O'
+#define VIDE ' '
+#define INCONNU ' '
+
+// les types
+typedef int Grille[NB_LIGNES][NB_COLONNES];
+
+// prototypes des fonctions
+void initGrille(Grille laGrille);
+void afficher(Grille laGrille, char pion);
+bool grillePleine(Grille laGrille);
+void jouer(Grille laGrille, char pion, int * ligne, int * colonne);
+void jouerOrdi(Grille laGrille, char pion, int * ligne, int * colonne );
+int choisirColonne(Grille laGrille, char pion);
+int choisirColonneOrdi(Grille laGrille, char pion);
+int chercherLigne(Grille laGrille, int col);
+bool estVainqueur(Grille laGrille, int lig, int col);
+void finDePartie(char vainqueur);
+int presqueVainqueur(Grille laGrille, char pion);
+int deuxAli(Grille laGrille,char pion);
+
+
+// Programme principal. j'est le pion A qui commence Ã  jouer
+int main()
+{
+    Grille laGrille;
+    char vainqueur=INCONNU;
+    int ligne, colonne;
+    initGrille(laGrille);
+    afficher(laGrille, PION_A);
+    while (vainqueur==INCONNU && !grillePleine(laGrille)){
+        jouerOrdi(laGrille,PION_A, &ligne, &colonne);
+        afficher(laGrille, PION_B);
+        if (estVainqueur(laGrille, ligne, colonne) ){
+            vainqueur = PION_A;
+        } else if (!grillePleine(laGrille)){
+            jouer(laGrille, PION_B, &ligne, &colonne);
+            afficher(laGrille, PION_A);
+            if (estVainqueur(laGrille, ligne, colonne) ){
+                vainqueur = PION_B;
+            }
+        }
+    }
+    finDePartie(vainqueur);
+    system(EXIT_SUCCESS);
+}
+
+
+void initGrille(Grille laGrille){
+    int l, j;
+    for (l=0 ; l<NB_LIGNES ; l++){
+        for (j=0 ; j<NB_COLONNES ; j++){
+            laGrille[l][j] = VIDE;
+        }
+    }
+}
+
+void afficher(Grille laGrille, char pion){
+    int l, j;
+    //system("clear");
+    printf("\t");
+    printf("  %c\n", pion);
+    printf("\t");
+    for (j=0; j<NB_COLONNES ; j++){
+        printf("----");
+    }
+    printf("-\n");
+    for (l=0 ; l<NB_LIGNES ; l++){
+        printf("\t");
+        for (j=0; j<NB_COLONNES ; j++){
+            printf("| %c ", laGrille[l][j]);
+        }
+        printf("|\n");
+        printf("\t");
+        for (j=0; j<NB_COLONNES ; j++){
+            printf("----");
+        }
+        printf("-\n");
+    }
+    printf("\t");
+    for (j=0; j<NB_COLONNES ; j++){
+            printf("  %d ",j);
+    }
+    printf("\n\n");
+
+}
+
+bool grillePleine(Grille laGrille){
+    bool pleine = true;
+    int j = 0;
+    while (pleine && j<NB_COLONNES){
+        if (laGrille[0][j] == VIDE){
+            pleine = false;
+        }
+        j++;
+    }
+    return pleine;
+}
+
+void jouer(Grille laGrille, char pion, int * ligne, int * colonne ){
+   *ligne = -1;
+    do {
+        *colonne = choisirColonne(laGrille, pion);
+        *ligne = chercherLigne(laGrille, *colonne);
+    }while (*ligne==-1);
+    laGrille[*ligne][*colonne] = pion;
+}
+
+void jouerOrdi(Grille laGrille, char pion, int * ligne, int * colonne ){
+   *ligne = -1;
+    do {
+        *colonne = choisirColonneOrdi(laGrille, pion);
+        *ligne = chercherLigne(laGrille, *colonne);
+    }while (*ligne==-1);
+    laGrille[*ligne][*colonne] = pion;
+}
+
+int choisirColonne(Grille laGrille, char pion){
+    int col;
+
+    do{
+        printf("Numero de colonne ? ");
+        scanf("%d", &col);
+    } while (col<0 ||col>6);
+    return col;
+}
+
+int choisirColonneOrdi(Grille laGrille, char pion) {
+  int col;
+  char pion1, pion2;
+  pion1 = pion;
+  if (pion1 == PION_A){
+    pion2=PION_B;
+  }else{
+    pion2=PION_A;
+  }
+  srand(time(NULL));
+  // Essayez de trouver un coup gagnant ou presque gagnant pour chaque joueur
+  col = presqueVainqueur(laGrille, pion1);
+  if (col == -1) {
+    col = presqueVainqueur(laGrille, pion2);
+    if (col == -1) {
+      col = deuxAli(laGrille, pion2);
+      if (col == -1) {
+        col = deuxAli(laGrille, pion1);
+        if (col == -1) {
+          if ((laGrille[5][3] == VIDE || laGrille[4][3] == VIDE)) {
+            col = (NB_COLONNES / 2);
+          } else {
+            col = rand() % NB_COLONNES;
+          }
+        }
+      }
+    }
+  }
+  return col;
+}
+
+
+
+int chercherLigne(Grille laGrille, int col){
+    int ligne = -1;
+
+    while (ligne<NB_LIGNES-1 && laGrille[ligne+1][col]==VIDE){
+        ligne++;
+    }
+    return ligne;
+}
+
+int presqueVainqueur(Grille laGrille, char pion){
+    int i,j,cpt;
+  // Analyse chaque ligne de la grille de jeu
+  for (i = 0; i < NB_LIGNES; i++) {
+    cpt = 0;
+    // Compte le nombre de jetons consécutifs de ce joueur dans cette ligne
+    for (j = 0; j < NB_COLONNES; j++) {
+        if (laGrille[i][j] == pion) {
+            cpt++;
+            if (cpt == 3) {
+                if (j < NB_COLONNES - 1 && laGrille[i][j + 1] == VIDE) {
+                return j + 1; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 4 jetons alignés
+                }
+                else if (j > 0 && laGrille[i][j - 3] == VIDE) {
+                    return j - 3; // Retourne le numéro de la colonne où il faut placer le prochain jeton
+            } else {
+                cpt = 0;
+            }
+        }
+    }
+    }
+  }
+  // Analyse chaque colonne de la grille de jeu
+  for (j = 0; j < NB_COLONNES; j++) {
+    cpt = 0;
+    // Compte le nombre de jetons consécutifs de ce joueur dans cette colonne
+    for (i = 6; i > -1; i--) {
+      if (laGrille[i][j] == pion) {
+        cpt++;
+        if (cpt == 3) {
+          if (i <= NB_LIGNES && laGrille[i + 1][j] == VIDE) {
+            return j; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 4 jetons alignés
+          }
+          else if (i >= 0 && laGrille[i - 1][j] == VIDE) {
+            return j; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 4 jetons alignés
+          }
+        }
+      } else {
+        cpt = 0;
+      }
+    }
+  }
+
+
+  // Analyse chaque diagonale de la grille de jeu
+  for (i = 6; i > -1; i--) {
+    for (j = 0; j < NB_COLONNES; j++) {
+      if (laGrille[i][j] == pion && laGrille[i + 1][j + 1] == pion && laGrille[i + 2][j + 2] == pion) {
+        if (j <= NB_COLONNES && i >= 0 && laGrille[i - 1][j + 3] == VIDE) {
+          return j + 3; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 4 jetons alignés
+        }
+      }
+    }
+  }
+  for (i = 6; i >-1; i--) {
+    for (j = 0; j < NB_COLONNES; j++) {
+      if (laGrille[i][j] == pion && laGrille[i + 1][j - 1] == pion && laGrille[i + 2][j - 2] == pion) {
+        if (j >= 2 && i >= 0 && laGrille[i - 1][j - 3] == VIDE) {
+          return j - 3; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 4 jetons alignés
+        }
+      }
+    }
+  }
+
+
+  return -1; // Aucune combinaison de 4 jetons trouvée, retournez -1
+}
+
+
+int deuxAli(Grille laGrille,char pion){
+  int i, j, cpt;
+  // Analyse chaque ligne de la grille de jeu
+  for (i = 0; i < NB_LIGNES; i++) {
+    cpt = 0;
+    // Compte le nombre de jetons consécutifs de ce joueur dans cette ligne
+    for ( j = 0; j < NB_COLONNES; j++) {
+      if (laGrille[i][j] == pion) {
+        cpt++;
+        if (cpt == 2) {
+          if (j < NB_COLONNES - 1 && laGrille[i][j + 1] == VIDE) {
+            return j + 1; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 3 jetons alignés
+          }
+          else if (j > 0 && laGrille[i][j - 2] == VIDE) {
+            return j - 2; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 3 jetons alignés
+            printf("%d\n",j-2);
+          
+          }
+        }
+      } else {
+        cpt = 0;
+      }
+    }
+  }
+    // Analyse chaque colonne de la grille de jeu
+  for (j = 0; j < NB_COLONNES; j++) {
+     cpt = 0;
+    // Compter le nombre de jetons consécutifs de ce joueur dans cette colonne
+    for ( i = 6; i > -1; i--) {
+      if (laGrille[i][j] == pion) {
+        cpt++;
+        if (cpt == 2) {
+          if (i <= NB_LIGNES && laGrille[i + 1][j] == VIDE) {
+            return j; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 3 jetons alignés
+          
+          }
+          else if (i > -1 && laGrille[i - 1][j] == VIDE) {
+            return j; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 3 jetons alignés
+
+          }
+        }
+      } else {
+        cpt = 0;
+      }
+    }
+  }
+
+  // Analyse chaque diagonale de la grille de jeu
+  for ( i = 6; i >- 1; i--) {
+    for ( j = 0; j < NB_COLONNES; j++) {
+      if (laGrille[i][j] == pion && laGrille[i + 1][j + 1] == pion) {
+        if (j <= NB_COLONNES - 2 && i >= 0 && laGrille[i - 1][j + 2] == VIDE) {
+          return j + 2; // Retourne le numéro de la colonne 
+
+
+           }
+      }
+    }
+  }
+  for ( i = 6; i > - 1; i--) {
+    for ( j = 1; j < NB_COLONNES; j++) {
+      if (laGrille[i][j] == pion && laGrille[i + 1][j - 1] == pion) {
+        if (j >= 0 && i >= 0 && laGrille[i - 1][j - 2] == VIDE) {
+          return j - 2; // Retourne le numéro de la colonne où il faut placer le prochain jeton pour avoir 3 jetons alignés
+
+        
+        }
+      }
+    }
+  }
+
+  return -1; // Aucune combinaison de 2 jetons trouvée, retourne -1
+}
+
+
+ 
+bool estVainqueur(Grille laGrille, int lig, int col){
+    // consiste Ã  regarder si une ligne de 4 pions s'est formÃ©e autour du pion qui vient de tomber en (lig, col)
+    char lePion = laGrille[lig][col];
+    int cpt,i,j;
+
+    // regarder la verticale, en comptant le nombre de pions au Sud (inutile de regarder au Nord du pion qui vient de tomber)
+    i = lig;
+    cpt = 0;
+    while (i<NB_LIGNES && laGrille[i][col]==lePion){
+        cpt++;
+        i++;
+    }
+    if (cpt>=4){
+        return true;
+    }
+    // regarder l'horizontale, en comptant le nombre de pions Ã  l'Est et Ã  l'Ouest
+    j = col;
+    cpt = 0;
+    // on regarde Ã  l'est
+    while (j>=0 && laGrille[lig][j]==lePion){
+        cpt++;
+        j--;
+    }
+    j = col+1;
+    // on regarde Ã  l'ouest
+    while (j<NB_COLONNES && laGrille[lig][j]==lePion){
+        cpt++;
+        j++;
+    }
+    if (cpt>=4 ){
+        return true;
+    }
+    // regarder la diagonale descendante, en comptant le nombre de pions au Nord Ouest et au Sud Est
+    i = lig;
+    j = col;
+    cpt = 0;
+    // on regarde au Nord Ouest
+    while (j>=0 && i>=0 && laGrille[i][j]==lePion){
+        cpt++;
+        i--;
+        j--;
+    }
+    i = lig+1;
+    j = col+1;
+    // on regarde au Sud Est
+    while (i<NB_LIGNES && j<NB_COLONNES && laGrille[i][j]==lePion){
+        cpt++;
+        i++;
+        j++;
+    }
+    if (cpt>=4 ){
+        return true;
+    }
+    // regarder la diagonale descendante, en comptant le nombre de pions au Nord Est et au Sud Ouest
+    i = lig;
+    j = col;
+    cpt = 0;
+    // on regarde au Nord Est
+    while (j<NB_COLONNES && i>=0 && laGrille[i][j]==lePion){
+        cpt++;
+        i--;
+        j++;
+    }
+    i = lig+1;
+    j = col-1;
+    // on regarde au Sud Ouest
+    while (i<NB_LIGNES && j>=0 && laGrille[i][j]==lePion){
+        cpt++;
+        i++;
+        j--;
+    }
+    if (cpt>=4 ){
+        return true;
+    }
+    return false;
+}
+
+void finDePartie(char vainqueur){
+    if (vainqueur != INCONNU){
+        printf("Joueur %c vainqueur\n", vainqueur);
+    } else {
+        printf("MATCH NUL");
+    }
+}

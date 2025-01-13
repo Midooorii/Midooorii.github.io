@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réaliser</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+<header>
+    <div class="logo">Portfolio Manon Chaperon</div>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="diplomes.html">Diplômes</a>
+        <a href="experiences.html">Expériences</a>
+        <a href="competences.html">Compétences</a>
+        <a href="centres_interets.html">Centres d'intérêt</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section>
+    <div id="competence" class="page">
+        <h1>Réaliser un développement d'application</h1>
+        <h2>Le Puissance 4</h4>
+        <p>L'objectif de ce projet est de créer un puissance 4
+            fonctionnel en langage C, jouable via le terminal de
+            Linux.</p>
+        <p>Voici une vidéo de l'exécution de mon programme : </p>
+        <video autoplay loop muted>
+            <source src="img/puissance4.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la balise vidéo.
+        </video>
+        <h3>Les différentes étapes du projet sont :</h4>
+            <div class="carousel">
+                <section class="interest">
+                    <div class="slides">
+                        <div class="slide active">
+                            <div class="caption">
+                                <h2>Etape 1</h2>
+                                <div class="rowCarousel">
+                                    <p>Faire une maquette.</p>
+                                    <a href="maquetteP4.pdf" target="_blank">
+                                        <button>Vous trouverez ici la maquette</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Flèches -->
+                            <button class="prev" onclick="prevSlide()">&#10094;</button>
+                            <button class="next" onclick="nextSlide()">&#10095;</button>
+                        </div>
+                        <div class="slide">
+                            <div class="caption">
+                                <h2>Etape 2</h2>
+                                <div class="rowCarousel">
+                                    <p>Réaliser un cahier de tests.</p>
+                                    <a href="cahier_de_tests.pdf" target="_blank">
+                                        <button>Vous pouvez consulter ici le cahier de test</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Flèches -->
+                            <button class="prev" onclick="prevSlide()">&#10094;</button>
+                            <button class="next" onclick="nextSlide()">&#10095;</button>
+                        </div>
+                        <div class="slide">
+                            <div class="caption">
+                                <h2>Etape 3</h2>
+                                <div class="rowCarousel">
+                                    <p>Ecrire un algorithme en pseudocode et le décomposer.</p>
+                                    <a href="pseudocode.pdf" target="_blank">
+                                        <button>Vous trouverez ici mon algorithme</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Flèches -->
+                            <button class="prev" onclick="prevSlide()">&#10094;</button>
+                            <button class="next" onclick="nextSlide()">&#10095;</button>
+                        </div>
+                        <div class="slide">
+                            <div class="caption">
+                                <h2>Etape 4</h2>
+                                <div class="rowCarousel">
+                                    <p>Rédiger le code source.</p>
+                                    <a href="Code_source.txt" target="_blank">
+                                        <button>Vous pouvez consulter ici mon code source</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Flèches -->
+                            <button class="prev" onclick="prevSlide()">&#10094;</button>
+                            <button class="next" onclick="nextSlide()">&#10095;</button>
+                        </div>
+                        <div class="slide">
+                            <div class="caption">
+                                <h2>Etape 5</h2>
+                                <div class="rowCarousel">
+                                    <p>Montrer des traces d'exécution.</p>
+                                    <a href="tests_execution.pdf" target="_blank">
+                                        <button>Vous trouverez ici mes traces d'exécution</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Flèches -->
+                            <button class="prev" onclick="prevSlide()">&#10094;</button>
+                            <button class="next" onclick="nextSlide()">&#10095;</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    </div>
+</section>
+<section>
+    <div id="competence" class="page">
+        <h1>Réaliser un développement d'application</h1>
+        <h2>Le Pokédex</h2>
+        <p>L'objectif de ce projet est de créer un Pokédex en utilisant JavaScript. Ce projet permet de rechercher et d'afficher des informations sur les différents Pokémon</p>
+        
+        <p>Voici une vidéo de l'exécution de mon programme :</p>
+        <video autoplay loop muted>
+            <source src="img/pokedex.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la balise vidéo.
+        </video>
+
+        <h3>Vous pouvez retrouvez les différentes version de ce projet juste ici : </h3>
+        <a href="https://github.com/Midooorii/Pokedex" target="_blank"><button  class="my-button">Le Pokedex sur GitHub</button></a>
+    </div>
+</section>
+
+<footer>
+    &copy; 2025 Portfolio Manon Chaperon. <a href="contact.html">Me contacter</a> - <a href="img/CV_Manon_Chaperon.pdf" target="_blank">Mon CV</a>
+</footer>
+<script src="app.js"></script>
+
+</body>
+</html>
