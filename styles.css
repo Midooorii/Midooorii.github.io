@@ -1,7 +1,6 @@
-/* Global styles */
 
 html, body {
-    height: 100%; /* Assurer que body et html prennent toute la hauteur de la fenêtre */
+    height: 100%; 
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -12,7 +11,7 @@ html, body {
 
 body {
     display: flex;
-    flex-direction: column; /* Disposer les éléments enfants (sections et footer) en colonne */
+    flex-direction: column; 
 }
 
 /* Header styles */
@@ -41,21 +40,21 @@ header nav a {
     color: #fff;
     text-decoration: none;
     font-size: 20px;
-    padding: 0.5rem 1rem; /* Ajout d'espace autour des liens */
-    border-radius: 5px; /* Arrondi des coins pour un effet moderne */
-    transition: all 0.3s ease-in-out; /* Transition fluide pour tous les changements */
+    padding: 0.5rem 1rem; 
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out; 
 }
 
 header nav a:hover {
     color: #083b1c;
-    background-color: white;/* Fond clair pour l'effet hover */
+    background-color: white;
 }
 
 header nav .active {
     color: #083b1c;
-    background-color: white; /* Couleur de fond plus visible */
-    font-weight: bold; /* Mettre le texte en gras pour accentuer l'état actif */
-    border: 2px solid #083b1c; /* Une bordure pour mieux démarquer l'élément actif */
+    background-color: white; 
+    font-weight: bold; 
+    border: 2px solid #083b1c; 
 }
 
 
@@ -70,12 +69,12 @@ header nav .active {
 }
 
 .profile-img {
-    width: 150px; /* Ajustez la taille de l'image */
+    width: 150px; 
     height: 150px;
-    border-radius: 50%; /* Pour rendre l'image circulaire */
+    border-radius: 50%; 
     object-fit: cover;
-    border: 4px solid #fff; /* Bordure blanche autour de l'image */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre légère autour de l'image */
+    border: 4px solid #fff; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
 .hero h1 {
@@ -104,9 +103,9 @@ header nav .active {
     background: #083b1c;
 }
 
-/* Sections styles */
+
 .sections {
-    flex: 1; /* Cette section prend tout l'espace restant pour pousser le footer vers le bas */
+    flex: 1; 
     padding: 2rem;
     text-align: center;
     display: flex;
@@ -116,7 +115,7 @@ header nav .active {
 
 .sections h2 {
     font-size: 2rem;
-    margin-bottom: 1.5rem; /* Augmenter l'espacement pour un meilleur visuel */
+    margin-bottom: 1.5rem; 
     color: #083B;
 }
 
@@ -135,10 +134,10 @@ header nav .active {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    text-align: left; /* Texte aligné à gauche pour plus de lisibilité */
+    text-align: left; 
     transition: transform 0.3s, box-shadow 0.3s;
     width: 100%;
-    max-width: 400px; /* Limite la largeur des cartes */
+    max-width: 400px;
 }
 
 .card:hover {
@@ -160,8 +159,8 @@ header nav .active {
 .cards #photo {
     width: 100%;
     height: auto;
-    border-radius: 10px; /* Bord arrondi pour les images */
-    max-width: 400px; /* Limite la largeur des images */
+    border-radius: 10px; 
+    max-width: 600px; 
 }
 
 /* Footer styles */
@@ -197,41 +196,41 @@ footer a:hover {
     }
 
     .cards {
-        flex-direction: column; /* En mode mobile, les éléments s'affichent en colonne */
-        align-items: center; /* Centrer les éléments */
+        flex-direction: column; 
+        align-items: center; 
     }
 
     .card {
-        padding: 1rem; /* Réduire les marges pour les petits écrans */
+        padding: 1rem; 
     }
 }
 
-/* Custom button styles */
+
 .my-button {
-    background-color: #083B; /* Couleur de fond du bouton */
-    color: white;              /* Couleur du texte */
-    border: none;              /* Retirer la bordure du bouton */
-    padding: 0.8rem 2rem;      /* Espacement interne (haut/bas, gauche/droite) */
-    font-size: 1.2rem;         /* Taille du texte */
-    border-radius: 30px;       /* Coins arrondis */
-    cursor: pointer;          /* Changer le curseur en pointeur lorsqu'on survole le bouton */
-    transition: background-color 0.3s; /* Effet au survol */
+    background-color: #083B; 
+    color: white;              
+    border: none;             
+    padding: 0.8rem 2rem;      
+    font-size: 1.2rem;         
+    border-radius: 30px;       
+    cursor: pointer;          
+    transition: background-color 0.3s; 
     margin-bottom: 1rem;
 }
 
 .my-button:hover {
-    background-color: #083b1c; /* Couleur de fond au survol */
+    background-color: #083b1c; 
 }
 
 i {
-    color: #083B; /* Couleur des icônes */
-    font-size: 2rem; /* Ajustez la taille des icônes (rem ou px selon vos besoins) */
-    margin: 0.5rem; /* Ajoutez de l'espacement autour si nécessaire */
-    transition: transform 0.3s ease; /* Animation pour un effet visuel sympa */
+    color: #083B; 
+    font-size: 3rem; 
+    margin: 0.5rem; 
+    transition: transform 0.3s ease; 
 }
 
 i:hover {
-    transform: scale(1.2); /* Agrandit légèrement l'icône au survol */
+    transform: scale(1.2); 
 }
 
 #experience{
@@ -240,19 +239,19 @@ i:hover {
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
-        text-align: left; /* Texte aligné à gauche pour plus de lisibilité */
+        text-align: left; 
         transition: transform 0.3s, box-shadow 0.3s;
         width: 100%;
-        max-width: 700px; /* Limite la largeur des cartes pour un meilleur rendu */
+        max-width: 80%;
 }
 
 /* ===== SECTION competence ===== */
 #competence {
-    padding: 2rem;
+    padding: 3rem;
     background: #fff;
     border-radius: 10px;
     margin: 2rem auto;
-    max-width: 800px;
+    max-width: 60%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
@@ -298,19 +297,19 @@ i:hover {
   
   .carousel .slides {
     display: flex;
-    overflow: hidden; /* Empêche le débordement horizontal */
+    overflow: hidden; 
     position: relative;
     border: 2px solid #ddd;
     border-radius: 8px;
     max-width: 800px;
     margin: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: auto; /* Ajuste la hauteur au contenu */
+    height: auto; 
   }
   
   .carousel .slide {
     flex-shrink: 0;
-    min-width: 100%; /* Empêche les slides de dépasser */
+    min-width: 100%; 
     display: none;
     justify-content: center;
     align-items: center;
@@ -318,7 +317,7 @@ i:hover {
     padding: 2rem;
     background: #fff;
     transition: opacity 0.5s ease-in-out;
-    box-sizing: border-box; /* Inclut le padding dans la largeur */
+    box-sizing: border-box; 
   }
   
   .carousel .slide.active {
@@ -361,8 +360,8 @@ i:hover {
     background: #083B;
     color: white;
     border: none;
-    width: 40px; /* Cercle parfait */
-    height: 40px; /* Cercle parfait */
+    width: 40px; 
+    height: 40px; 
     font-size: 1.2rem;
     cursor: pointer;
     z-index: 10;
@@ -374,18 +373,18 @@ i:hover {
   }
   
   .carousel .prev {
-    left: 10px; /* Ajuste la position gauche */
+    left: 10px; 
   }
   
   .carousel .next {
-    right: 10px; /* Ajuste la position droite */
+    right: 10px; 
   }
   
   
   .carousel .prev:hover,
   .carousel .next:hover {
-    background: #0A4C; /* Couleur légèrement plus claire pour l'effet hover */
-    transform: translateY(-50%) scale(1.1); /* Agrandissement lors du hover */
+    background: #0A4C; 
+    transform: translateY(-50%) scale(1.1); 
   }
   
   
@@ -433,7 +432,7 @@ i:hover {
   }
 
 #carousel{
-  width: 650px; /* Assurez-vous que les images ne dépassent pas la largeur de l'écran sur les petits appareils */
+  width: 650px; 
   height: 400px;
 }
   
